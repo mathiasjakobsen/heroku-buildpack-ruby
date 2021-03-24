@@ -211,6 +211,8 @@ class LanguagePack::Helpers::BundlerWrapper
     # https://rubular.com/r/jt9yj0aY7fU3hD
     bundler_version_match = @gemfile_lock_path.read(mode: "rt").match(BUNDLED_WITH_REGEX)
 
+    topic("BUNDLER_VERSION_MATCH: #{bundler_version_match}")
+
     if bundler_version_match
       bundler_version_match[:major]
     else
@@ -223,6 +225,10 @@ class LanguagePack::Helpers::BundlerWrapper
   # and download the "blessed" version with the same major version.
   def detect_bundler_version_and_dir_name!
     major = major_bundler_version
+
+
+    topic("MAJOR: #{major}")
+
     if BLESSED_BUNDLER_VERSIONS.key?(major)
       @version = BLESSED_BUNDLER_VERSIONS[major]
     else
