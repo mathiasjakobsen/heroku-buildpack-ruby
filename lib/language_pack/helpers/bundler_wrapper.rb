@@ -211,6 +211,8 @@ class LanguagePack::Helpers::BundlerWrapper
     # https://rubular.com/r/jt9yj0aY7fU3hD
     bundler_version_match = @gemfile_lock_path.read(mode: "rt").match(BUNDLED_WITH_REGEX)
 
+    topic("PATH #{@gemfile_lock_path}")
+    topic("WHOLE FILE #{@gemfile_lock_path.read(mode: "rt")}")
     topic("BUNDLER_VERSION_MATCH: #{bundler_version_match}")
 
     if bundler_version_match
